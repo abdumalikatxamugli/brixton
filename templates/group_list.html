@@ -1,0 +1,17 @@
+<table border="1">
+	<tbody>
+		{% for group in groups%}
+			<tr>
+				<td>
+					{{group.id}}
+				</td>	
+				<td>
+					{{group.name}}
+				</td>
+				<td>
+					<a href='{%url "studentlist" group_id=group.id%}'>make</a>
+				</td>				
+			</tr>
+		{%endfor%}
+	</tbody>
+</table>

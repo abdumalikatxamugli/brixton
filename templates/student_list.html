@@ -1,0 +1,26 @@
+<form method="POST">
+{%csrf_token%}
+<table border="1">
+	<tbody>
+		{% for student in students%}
+			<tr>
+				<td>
+					{{student.id}}
+				</td>	
+				<td>
+					{{student.firstname}}
+					{{student.lastname}}
+				</td>
+				<td>
+					<select name="{{student.id}}">
+						<option>P</option>
+						<option>A</option>
+						<option>L</option>
+					</select>
+				</td>				
+			</tr>
+		{%endfor%}
+	</tbody>
+</table>
+<button>Save</button>	
+</form>

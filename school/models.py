@@ -23,7 +23,8 @@ class StudentGroup(models.Model):
 	def __str__(self):
 		return self.name
 
-class Teacher(User):
+class Teacher(models.Model):
+	user_id = models.OneToOneField(User, on_delete=models.CASCADE)
 	firstname = models.CharField(max_length=256)
 	lastname = models.CharField(max_length=256)
 	phone = models.CharField(max_length = 14)
@@ -35,6 +36,8 @@ class Teacher(User):
 	class Meta:
 		verbose_name = "Teacher"
 
+	def __str__(self):
+		return self.firstname+" "+self.lastname
 
 
 
@@ -49,14 +52,3 @@ class Student(models.Model):
 
 
 	
-
-class Attendance(models.Model):
-	student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-	group_id = models.ForeignKey(StudentGroup, on_delete = models.CASCADE)
-	date = models.DateField(default = timezone.now())
-	status = (
-        ('P', 'Present'),
-        ('A', 'Absent'),
-        ('L', 'Late'),
-    )
-	status = models.CharField(max_length=1, choices = status)
